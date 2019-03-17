@@ -12,13 +12,20 @@ nav ul {
 	flex-direction: row;
 }
 
+hr {
+	margin-top: -1em;
+	border-top: 2px dashed #5BD445;
+	width: 15%;
+}
+
 h1, h2, h3 {
 	color: #5BD445;
 }
 
-h1 {
+h1, h2 {
 	text-align: center;
 	height: 2em;
+	margin: 0;
 }
 
 a, a:visited, a:hover {
