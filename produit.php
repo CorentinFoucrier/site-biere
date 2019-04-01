@@ -22,10 +22,13 @@
 						<div class="collapse navbar-collapse" id="navbar01">
 							<ul class="navbar-nav mr-auto">
 								<li class="nav-item">
-									<a class="nav-link" href="index.html">Présentation <span class="sr-only">(current)</span></a>
+									<a class="nav-link" href="index.php">Présentation</a>
 								</li>
 								<li class="nav-item active">
-									<a class="nav-link" href="produit.html">Produit</a>
+									<a class="nav-link" href="produit.php">Produit <span class="sr-only">(current)</span></a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="autre-produits.php">Autres produits</a>
 								</li>
 							</ul>
 						</div>

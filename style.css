@@ -51,6 +51,11 @@ img {
 	background-color: #D17200;
 }
 
+.box-header {
+	min-height: 4em;
+	overflow:hidden;
+}
+
 .box-borders {
 	border-top: 1px solid black;
 	border-bottom: 1px solid black;
