@@ -74,3 +74,14 @@ nav {
 button, .btn, .btn-link {
 	color: #5BD445;
 }
+
+.btn-light {
+	background: rgba(0, 0, 0, 0.15);
+	border-color: black;
+}
+
+.btn-light:hover {
+	color: #5ADABD;
+	background: rgba(0, 0, 0, 0.15);
+	border-color: white;
+}
