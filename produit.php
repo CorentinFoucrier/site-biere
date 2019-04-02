@@ -2,41 +2,13 @@
 <html>
 	<head>
 		<title>Présentation produit</title>
-		<meta charset="utf-8" />
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-		<link rel="stylesheet" href="style.css" />
-		<link rel="stylesheet" href="navbar.css" />
+		<?php include('head.php'); ?>
 	</head>
 	<body>
 		<div id="oppacity-bg" class="container">
-
-			<header class="row">
-				<img id="bannière" src="images/brasseur.jpg" alt="brasseur" />
-					<nav class="col-12 navbar navbar-expand-md navbar-dark">
-						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar01" aria-controls="navbar01" aria-expanded="false" aria-label="Toggle navigation">
-							<span class="navbar-toggler-icon"></span>
-						</button>
-						<div class="collapse navbar-collapse" id="navbar01">
-							<ul class="navbar-nav mr-auto">
-								<li class="nav-item">
-									<a class="nav-link" href="index.php">Présentation</a>
-								</li>
-								<li class="nav-item active">
-									<a class="nav-link" href="produit.php">Produit <span class="sr-only">(current)</span></a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="autre-produits.php">Autres produits</a>
-								</li>
-							</ul>
-						</div>
-					</nav>
-			</header>
-
+			<?php include('header.php'); ?>
 			<section class="row">
-				<div class="col-12 col-md-12">
+				<div class="col-md-12">
 					<h1 class="text-center">La bière faite au pain par Julien et Kevin !</h1>
 					<hr class="d-none d-lg-block" />
 					<p>Il y a 3 ans de là, Julien et Kevin ont collaboré pour créer une bière inédite ! Mais qui n'a, malgrès toute ces années passé, toujours pas de nom.</p>
@@ -99,15 +71,8 @@
 					</div>
 				</div>
 			</section>
-
-			<footer class="row text-center">
-				<div class="col-12">
-					<br />
-					<p>© Copyright 2019 - La bière au pain | <a href="index.html">Présentation</a> \ <a href="produit.html">Notre produit</a><br />
-					SAS au capital de 1.000€ - N°SIREN : 555 222 666</p>
-				</div>
-			</footer>
-
+			<?php include('footer.php'); ?>
 		</div>
+	<?php include('scripts.php'); ?>
 	</body>
 </html>

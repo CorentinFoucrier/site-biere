@@ -66,3 +66,11 @@ footer {
 	background: rgba(0, 0, 0, 0.25);
 	margin-top: 1em;
 }
+
+nav {
+	background: rgba(0, 0, 0, 0.15);
+}
+
+button, .btn, .btn-link {
+	color: #5BD445;
+}
