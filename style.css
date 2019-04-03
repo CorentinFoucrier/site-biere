@@ -69,6 +69,7 @@ footer {
 
 nav {
 	background: rgba(0, 0, 0, 0.15);
+	border-bottom: 1px solid #5ADABD;
 }
 
 button, .btn, .btn-link {
@@ -85,3 +86,4 @@ button, .btn, .btn-link {
 	background: rgba(0, 0, 0, 0.15);
 	border-color: white;
 }
+
