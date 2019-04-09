@@ -112,33 +112,33 @@ $beerArray = [
 							<input type="text" class="form-control" name="codePostal">
 						</div>
 					</div>
-
-
-
+					<table class="table table-striped mt-5">
+						<thead>
+							<tr>
+								<th scope="col">Nom de la bière</th>
+								<th scope="col">Prix HT</th>
+								<th scope="col">Prix TTC</th>
+								<th scope="col">Quantité</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php for ($i=0; $i < count($beerArray); $i++) { ?>
+							<tr id="<?= ($i+1) ?>">
+								<th scope="row"><?= $beerArray[$i][0] ?></th>
+								<td><?= number_format($beerArray[$i][3], 2, ',', '.'); ?></td>
+								<td><?= number_format($beerArray[$i][3]*1.2, 2, ',', '.'); ?></td>
+								<td>
+									<input class="form-control" onclick="pomme(<?= ($i+1) ?>)" type="number" value="0" min="0" name="Qte">
+									<input id="prixInitial<?= ($i+1) ?>" type="hidden" value="<?= $beerArray[$i][3] ?>">
+								</td>
+							</tr>
+							<?php } ?>
+						</tbody>
+					</table>
 					<button type="submit" class="btn btn-light float-left">Envoyer</button>
 				</fieldset>
 			</form>
 
-			<table class="table table-striped mt-5">
-				<thead>
-					<tr>
-						<th scope="col">Nom de la bière</th>
-						<th scope="col">Prix HT</th>
-						<th scope="col">Prix TTC</th>
-						<th scope="col">Quantité</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php for ($i=0; $i < count($beerArray); $i++) { ?>
-					<tr id="<?= ($i+1) ?>">
-						<th scope="row"><?= $beerArray[$i][0] ?></th>
-						<td><?= number_format($beerArray[$i][3], 2, ',', '.'); ?></td>
-						<td><?= number_format($beerArray[$i][3]*1.2, 2, ',', '.'); ?></td>
-						<td><input class="form-control" onclick="pomme(<?= ($i+1) ?>)" type="number" value="0" name="Qte"></td>
-					</tr>
-					<?php } ?>
-				</tbody>
-			</table>
 
 			<?php include('footer.php'); ?>
 		</div>
