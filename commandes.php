@@ -134,7 +134,7 @@ $beerArray = [
 						<th scope="row"><?= $beerArray[$i][0] ?></th>
 						<td><?= number_format($beerArray[$i][3], 2, ',', '.'); ?></td>
 						<td><?= number_format($beerArray[$i][3]*1.2, 2, ',', '.'); ?></td>
-						<td><input class="form-control" type="number" value="0" name="Qte"></td>
+						<td><input class="form-control" onclick="pomme(<?= ($i+1) ?>)" type="number" value="0" name="Qte"></td>
 					</tr>
 					<?php } ?>
 				</tbody>
