@@ -87,3 +87,28 @@ button, .btn, .btn-link {
 	border-color: white;
 }
 
+input, .form-control {
+	background-color: rgba(0, 0, 0, 0.15);
+	color: #5BD445;
+}
+
+
+.form-control:focus {
+	background-color: rgba(0, 0, 0, 0.15);
+	color: #5BD445;
+	border-color: black;
+	box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.15)
+}
+
+legend {
+	color: #5BD445;
+}
+
+thead {
+	background-color: rgba(0, 0, 0, 0.40);
+	color: #5BD445;
+}
+
+tbody {
+	color: #5ADABD;
+}
