@@ -68,7 +68,7 @@ $beerArray = [
 		<div id="oppacity-bg" class="container">
 			<?php include('header.php'); ?>
 
-			<form method="get" class="border border-white rounded p-5">
+			<form method="get" action="confirmation_commande.php" class="border border-white rounded p-5">
 				<fieldset>
 					<legend>Formulaire de commande</legend>
 
@@ -112,6 +112,7 @@ $beerArray = [
 							<input type="text" class="form-control" name="codePostal">
 						</div>
 					</div>
+					
 					<table class="table table-striped mt-5">
 						<thead>
 							<tr>

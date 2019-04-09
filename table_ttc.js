@@ -7,5 +7,4 @@ function pomme(id) {
 
 	document.getElementById(id).childNodes[3].innerHTML = resultatHt.toFixed(2).replace('.', ',');
 	document.getElementById(id).childNodes[5].innerHTML = resultatTtc.toFixed(2).replace('.', ',');
-
 }
