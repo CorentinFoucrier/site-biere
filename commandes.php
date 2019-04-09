@@ -129,7 +129,7 @@ $beerArray = [
 								<td><?= number_format($beerArray[$i][3], 2, ',', '.'); ?></td>
 								<td><?= number_format($beerArray[$i][3]*1.2, 2, ',', '.'); ?></td>
 								<td>
-									<input class="form-control" onclick="pomme(<?= ($i+1) ?>)" type="number" value="0" min="0" name="Qte">
+									<input class="form-control" onclick="pomme(<?= ($i+1) ?>)" type="number" value="0" min="0" name="<?= $beerArray[$i][0] ?>">
 									<input id="prixInitial<?= ($i+1) ?>" type="hidden" value="<?= $beerArray[$i][3] ?>">
 								</td>
 							</tr>
