@@ -7,6 +7,7 @@
 				<li><a href="index.php">Présentation</a></li>
 				<li><a href="produit.php">Produit</a></li>
 				<li><a href="autre-produits.php">Autres produits</a></li>
+				<li><a href="commandes.php">Commandes</a></li>
 			</ul>
 		</nav>
 
