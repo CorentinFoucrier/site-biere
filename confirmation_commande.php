@@ -1,5 +1,7 @@
 <?php
 
+include('beerArray.php');
+
 if (!empty($_GET['nom'] && $_GET['prenom'] && $_GET['tel'] &&  $_GET['email'] && $_GET['adresse'] && $_GET['ville'] && $_GET['pays'] && $_GET['codePostal'])) {
 		$nom = htmlentities($_GET['nom']);
 		$prenom = htmlentities($_GET['prenom']);
@@ -49,21 +51,25 @@ if (!empty($_GET['nom'] && $_GET['prenom'] && $_GET['tel'] &&  $_GET['email'] &&
 					<thead>
 						<tr>
 							<th scope="col">Nom de la bière</th>
-							<th scope="col">Prix HT</th>
-							<th scope="col">Prix TTC</th>
+							<th scope="col">Prix unitaire HT</th>
+							<th scope="col">Prix unitaire TTC</th>
 							<th scope="col">Quantité</th>
 							<th scope="col">Total TTC</th>
 						</tr>
 					</thead>
 
 					<tbody>
+						<?php for ($i=0; $i < count($beerArray) ; $i++) {
+							if ($_GET['beerName'.$i] > 0) {
+						?>
 						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td><?= $beerArray[$i][0]; ?></td>
+							<td><?= '€ '.number_format($beerArray[$i][3], '2', ',', '.'); ?></td>
+							<td><?= '€ '.number_format($beerArray[$i][3]*1.2, '2', ',', '.'); ?></td>
+							<td><?= $_GET['beerName'.$i]; ?></td>
+							<td><?= '€ '.number_format(($_GET['beerName'.$i]*$beerArray[$i][3])*1.2, '2', ',', '.'); ?></td>
 						</tr>
+						<?php }} ?>
 					</tbody>
 				</table>
 
