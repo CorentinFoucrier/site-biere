@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 	<head>
 		<title>Présentation entreprise</title>
 		<?php include('head.php'); ?>

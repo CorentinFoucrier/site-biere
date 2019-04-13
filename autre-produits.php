@@ -17,7 +17,7 @@ function add3dots($string, $repl, $limit)
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 	<head>
 		<title>Nos autre produits</title>
 		<?php include('head.php'); ?>

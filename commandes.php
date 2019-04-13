@@ -5,7 +5,7 @@ include('beerArray.php');
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 	<head>
 		<title>Commandes</title>
 		<?php include('head.php'); ?>
