@@ -45,9 +45,6 @@ function add3dots($string, $repl, $limit)
 						<div class="col-12">
 							<h5 class="my-3 text-center"><?php echo number_format($element[3]*1.2, 2, ',', '.'); ?>€ TTC</h5>
 						</div>
-						<div class="col-12 d-flex justify-content-end">
-							<button type="button" onclick="ajouterBiere()" class="btn btn-light mb-2 float-left">Ajouter une bière</button>
-						</div>
 					</div>
 				</div>
 				<?php } ?>
