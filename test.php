@@ -14,5 +14,5 @@ $result = $statement->execute([
 	':prix' 		=> $element[3]
 ]);
 }
-
+*/
 ?>

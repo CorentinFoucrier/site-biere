@@ -18,7 +18,12 @@
 		';
 	}
 
+	if ($short_uri === "") {
+		$index = "active";
+	}
+
 	switch ($short_uri) {
+	case "site-biere":
     case "index":
         $index = "active";
         break;
@@ -31,7 +36,8 @@
     case "commandes":
         $commandes = "active";
         break;
-}
+    $index = "active";
+	}
 ?>
 
 <header class="row mb-3">

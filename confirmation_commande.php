@@ -1,19 +1,28 @@
 <?php
 
-include('beerArray.php');
+	require 'db.php';
 
-if (!empty($_GET['nom'] && $_GET['prenom'] && $_GET['tel'] &&  $_GET['email'] && $_GET['adresse'] && $_GET['ville'] && $_GET['pays'] && $_GET['codePostal'])) {
-		$nom = htmlentities($_GET['nom']);
-		$prenom = htmlentities($_GET['prenom']);
-		$tel = htmlentities($_GET['tel']);
-		$email = htmlentities($_GET['email']);
-		$adresse = htmlentities($_GET['adresse']);
-		$ville = htmlentities($_GET['ville']);
-		$pays = htmlentities($_GET['pays']);
-		$codeP = htmlentities($_GET['codePostal']);
-} else {
-	header('Location: commandes.php');
-}
+	if (!empty($_POST['nom'] && $_POST['prenom'] && $_POST['tel'] &&  $_POST['email'] && $_POST['adresse'] && $_POST['ville'] && $_POST['pays'] && $_POST['codePostal'])) {
+
+		$nom = htmlentities($_POST['nom']);
+		$prenom = htmlentities($_POST['prenom']);
+		$tel = htmlentities($_POST['tel']);
+		$email = htmlentities($_POST['email']);
+		$adresse = htmlentities($_POST['adresse']);
+		$ville = htmlentities($_POST['ville']);
+		$pays = htmlentities($_POST['pays']);
+		$codeP = htmlentities($_POST['codePostal']);
+
+		$arrayTotalAmount = array();
+
+		require_once 'db.php';
+		$sql = "SELECT * FROM biere";
+		$statement = $pdo->query($sql);
+		$bieres = $statement->fetchAll();
+
+	} else {
+		header('Location: commandes.php');
+	}
 
 ?>
 
@@ -62,28 +71,35 @@ if (!empty($_GET['nom'] && $_GET['prenom'] && $_GET['tel'] &&  $_GET['email'] &&
 						</thead>
 
 						<tbody>
-							<?php for ($i=0; $i < count($beerArray) ; $i++) {
-								if ($_GET['beerName'.$i] > 0) {
+							<?php  ?>
+							<?php foreach ($bieres as $biere) :
+
+								if ($_POST['beerName'.$biere['id']] > 0) :
+									
+									$result = ($_POST['beerName'.$biere['id']]*$biere['prix']*1.2);
+
+									array_push($arrayTotalAmount, $result);
 							?>
 							<tr>
-								<td><?= $beerArray[$i][0]; ?></td>
-								<td><?= '€ '.number_format($beerArray[$i][3], '2', ',', '.'); ?></td>
-								<td><?= '€ '.number_format($beerArray[$i][3]*1.2, '2', ',', '.'); ?></td>
-								<td><?= $_GET['beerName'.$i]; ?></td>
-								<td><?= '€ '.number_format(($_GET['beerName'.$i]*$beerArray[$i][3])*1.2, '2', ',', '.'); ?></td>
+								<td><?= $biere['titre']; ?></td>
+								<td><?= '€ '.number_format($biere['prix'], '2', ',', '.'); ?></td>
+								<td><?= '€ '.number_format($biere['prix']*1.2, '2', ',', '.'); ?></td>
+								<td><?= $_POST['beerName'.$biere['id']]; ?></td>
+								<td><?= '€ '.number_format(($_POST['beerName'.$biere['id']]*$biere['prix'])*1.2, '2', ',', '.'); ?></td>
 							</tr>
-							<?php }} ?>
-							<?php  ?>
+							<?php
+								endif;
+							endforeach;
+							?>
 							<tfoot>
 								<tr>
 									<th scope="col"></th>
 									<th scope="col"></th>
 									<th scope="col"></th>
 									<th scope="col">Totaux</th>
-									<th scope="col">€ 0.00</th>
+									<th scope="col">€ <?= number_format(array_sum($arrayTotalAmount), '2', ',', '.'); ?></th>
 								</tr>
 							</tfoot>
-							<?php  ?>
 						</tbody>
 					</table>
 				</div><!-- fin border -->

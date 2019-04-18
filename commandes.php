@@ -1,7 +1,11 @@
 <?php 
 
 	session_start();
-	require 'beerArray.php';
+	require 'db.php';
+
+	$sql = "SELECT * FROM biere";
+	$statement = $pdo->query($sql);
+	$bieres = $statement->fetchAll();
 
 ?>
 
@@ -15,7 +19,7 @@
 		<div id="oppacity-bg" class="container">
 			<?php include('header.php'); ?>
 
-			<form method="get" action="confirmation_commande.php" class="border border-white rounded p-5">
+			<form method="post" action="confirmation_commande.php" class="border border-white rounded p-5">
 				<fieldset>
 					<legend>Formulaire de commande</legend>
 
@@ -70,17 +74,17 @@
 								</tr>
 							</thead>
 							<tbody>
-								<?php for ($i=0; $i < count($beerArray); $i++) { ?>
-								<tr id="<?= ($i+1) ?>">
-									<th scope="row"><?= $beerArray[$i][0] ?></th>
-									<td>€ <?= number_format($beerArray[$i][3], 2, ',', '.'); ?></td>
-									<td>€ <?= number_format($beerArray[$i][3]*1.2, 2, ',', '.'); ?></td>
+								<?php foreach ($bieres as $biere) : ?>
+								<tr id="<?= $biere['id'] ?>">
+									<th scope="row"><?= $biere['titre'] ?></th>
+									<td>€ <?= number_format($biere['prix'], 2, ',', '.'); ?></td>
+									<td>€ <?= number_format($biere['prix']*1.2, 2, ',', '.'); ?></td>
 									<td>
-										<input class="form-control" onclick="pomme(<?= ($i+1) ?>)" type="number" value="0" min="0" name="<?= 'beerName'.$i ?>">
-										<input id="prixInitial<?= ($i+1) ?>" type="hidden" value="<?= $beerArray[$i][3] ?>">
+										<input class="form-control" onclick="pomme(<?= $biere['id'] ?>)" type="number" value="0" min="0" name="<?= 'beerName'.$biere['id'] ?>">
+										<input id="prixInitial<?= $biere['id'] ?>" type="hidden" value="<?= $biere['prix'] ?>">
 									</td>
 								</tr>
-								<?php } ?>
+								<?php endforeach; ?>
 							</tbody>
 						</table>
 					</div>

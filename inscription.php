@@ -11,17 +11,17 @@
 	$errUsernamePwd = false;
 	/* Vérif que le formulaire ($_POST) n'est pas vide */
 	if(!empty($_POST)){
-		$username = $_POST['username'];
-		$email = $_POST['email'];
-		$password = $_POST['password'];
-		$passwordConfirmed = $_POST['passwordConfirmed'];
-		$nom = $_POST['nom'];
-		$prenom = $_POST['prenom'];
-		$tel = $_POST['tel'];
-		$ville = $_POST['ville'];
-		$adresse = $_POST['adresse'];
-		$pays = $_POST['pays'];
-		$codePostal = $_POST['codePostal'];
+		$username = htmlentities($_POST['username']);
+		$email = htmlentities($_POST['email']);
+		$password = htmlentities($_POST['password']);
+		$passwordConfirmed = htmlentities($_POST['passwordConfirmed']);
+		$nom = htmlentities($_POST['nom']);
+		$prenom = htmlentities($_POST['prenom']);
+		$tel = htmlentities($_POST['tel']);
+		$ville = htmlentities($_POST['ville']);
+		$adresse = htmlentities($_POST['adresse']);
+		$pays = htmlentities($_POST['pays']);
+		$codePostal = htmlentities($_POST['codePostal']);
 		/* verif que les champs ne sont pas vides */
 		if (!empty($username && $password && $passwordConfirmed && $nom && $prenom && $tel && $ville && $adresse && $pays && $codePostal)) {
 			/* récupération de l'utilisateur et de l'email */
