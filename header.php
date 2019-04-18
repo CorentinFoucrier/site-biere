@@ -28,7 +28,7 @@
 
 	<img id="bannière" src="assets/img/brasseur.jpg" alt="brasseur" class="d-none d-lg-block" />
 
-		<nav class="col-12 navbar navbar-expand-md navbar-dark">
+		<nav class="col-12 navbar navbar-expand-md navbar-dark justify-content-between">
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar01" aria-controls="navbar01" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -47,7 +47,14 @@
 						<a class="nav-link" href="commandes.php">Commandes</a>
 					</li>
 				</ul>
+				<form class="form-inline">
+					<input class="form-control mr-sm-2 my-2 my-md-0" type="text" placeholder="Username" aria-label="Username">
+					<input class="form-control mr-sm-2" type="password" placeholder="Password" aria-label="Password">
+					<button class="btn btn-light my-2 my-sm-0" type="submit">Login</button>
+					<a href="inscription.php"><button class="btn btn-light my-2 my-sm-0 ml">S'inscrire</button></a>
+				</form>
 			</div>
+			
 		</nav>
 
 </header>
