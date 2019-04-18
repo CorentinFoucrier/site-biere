@@ -1,7 +1,86 @@
 <?php 
-
-
-
+	session_start();
+	require 'isLogged.php';
+	/*
+		Définition des variable pour contrer l'erreur
+		undefined en cas d'utilisation du debugeur "xdebug".
+	*/
+	$errUsername = "";
+	$errPassword = "";
+	$errPasswordConfirmed = "";
+	$errUsernamePwd = false;
+	/* Vérif que le formulaire ($_POST) n'est pas vide */
+	if(!empty($_POST)){
+		$username = $_POST['username'];
+		$email = $_POST['email'];
+		$password = $_POST['password'];
+		$passwordConfirmed = $_POST['passwordConfirmed'];
+		$nom = $_POST['nom'];
+		$prenom = $_POST['prenom'];
+		$tel = $_POST['tel'];
+		$ville = $_POST['ville'];
+		$adresse = $_POST['adresse'];
+		$pays = $_POST['pays'];
+		$codePostal = $_POST['codePostal'];
+		/* verif que les champs ne sont pas vides */
+		if (!empty($username && $password && $passwordConfirmed && $nom && $prenom && $tel && $ville && $adresse && $pays && $codePostal)) {
+			/* récupération de l'utilisateur et de l'email */
+			require_once 'db.php';
+			$sql = 'SELECT * FROM users WHERE username = ?, email = ?';
+			$statement = $pdo->prepare($sql);
+			$statement->execute([$username, $email]);
+			$user = $statement->fetch();
+			/* Si $user est false (l'utilisateur et email existe pas) */
+			if (!$user) {
+				/* Verif que le mdp soit dans le format désiré */
+				if (strlen($password) <= 10 && strlen($password) >= 5) { // Format à déposer dans la condition
+					/* Si mot de passe identiques = true */
+					if ($password === $passwordConfirmed) {
+						$passwordhash = password_hash($password, PASSWORD_BCRYPT);
+						require_once 'db.php';
+						$sql = "INSERT INTO `users` (`nom`, `prenom`, `telephone`, `email`, `adresse`, `ville`, `pays`, `codePostal`, `username`, `password`) VALUES (:nom, :prenom, :telephone, :email, :adresse, :ville, :pays, :codePostal, :username, :password)";
+						$statement = $pdo->prepare($sql);
+						$result = $statement->execute([
+							':nom' => $nom,
+							':prenom' => $prenom,
+							':telephone' => $tel,
+							':email' => $email,
+							':adresse' => $adresse,
+							':ville' => $ville,
+							':pays' => $pays,
+							':codePostal' => $codePostal,
+							':username' => $username,
+							':password' => $passwordhash
+						]);
+						if ($result) {
+							/* Tout s'est bien passé */
+							session_start();
+							$_SESSION['username'] = $username;
+							header("Location: index.php");
+						}else{
+							die('erreur enregistrement en base de donnée');
+							/* TODO : Signaler l'erreur */
+						}
+					}else{
+						/* TODO : Les mot de passe ne sont pas identiques */
+					}
+				}else{
+					/* TODO : Mot de passe n'est pas entre 5 et 10 caractères */
+				}
+			}else{
+				/* TODO : L'uilisateur ou l'email existe déjà */
+			}
+		}else{
+			/* Si le champs utilisateur est envoyer vide alors class="danger" */
+			if (empty($username)) {
+				$errUsername = "is-invalid";
+			}
+			/* Si le champs mot de passe est envoyer vide alors class="danger" */
+			if (empty($password)) {
+				$errPassword = "is-invalid";
+			}
+		}
+	}
 ?>
 
 <!DOCTYPE html>
@@ -30,11 +109,11 @@
 								</div>
 								<div class="form-group col-12 col-md-6">
 									<label for="prenom">Mot de passe</label>
-									<input type="text" class="form-control" name="password">
+									<input type="password" class="form-control" name="password">
 								</div>
 								<div class="form-group col-12 col-md-6">
 									<label for="prenom">Confirmation mot de passe</label>
-									<input type="text" class="form-control" name="passwordConfirmed">
+									<input type="password" class="form-control" name="passwordConfirmed">
 								</div>
 							</div>
 

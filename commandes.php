@@ -1,6 +1,7 @@
 <?php 
 
-include('beerArray.php');
+	session_start();
+	require 'beerArray.php';
 
 ?>
 

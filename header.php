@@ -1,4 +1,5 @@
 <?php
+	
 	$uri = "$_SERVER[REQUEST_URI]";
 
 	$short_uri = basename($uri, ".php");
@@ -51,7 +52,7 @@
 					<input class="form-control mr-sm-2 my-2 my-md-0" type="text" placeholder="Username" aria-label="Username">
 					<input class="form-control mr-sm-2" type="password" placeholder="Password" aria-label="Password">
 					<button class="btn btn-light my-2 my-sm-0" type="submit">Login</button>
-					<a href="inscription.php"><button class="btn btn-light my-2 my-sm-0 ml">S'inscrire</button></a>
+					<a href="inscription.php"><button class="btn btn-light my-2 my-sm-0 ml-1">S'inscrire</button></a>
 				</form>
 			</div>
 			
