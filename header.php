@@ -1,5 +1,5 @@
 <?php
-	
+
 	$uri = "$_SERVER[REQUEST_URI]";
 
 	$short_uri = basename($uri, ".php");
@@ -8,6 +8,15 @@
 	$produit = "";
 	$autreProduits = "";
 	$commandes = "";
+	$displayNone = "";
+	$decoButton = "";
+
+	if (isset($_SESSION['username'])) {
+		$displayNone = 'd-none';
+		$decoButton = '
+		<a href="deconnexion.php" class="float-left"><button class="btn btn-light my-2 my-sm-0" type="submit">Déconexion</button></a>
+		';
+	}
 
 	switch ($short_uri) {
     case "index":
@@ -48,12 +57,13 @@
 						<a class="nav-link" href="commandes.php">Commandes</a>
 					</li>
 				</ul>
-				<form class="form-inline">
-					<input class="form-control mr-sm-2 my-2 my-md-0" type="text" placeholder="Username" aria-label="Username">
-					<input class="form-control mr-sm-2" type="password" placeholder="Password" aria-label="Password">
+				<form method="post" action="connexion.php" class="form-inline <?= $displayNone ?>">
+					<input class="form-control mr-sm-2 my-2 my-md-0" type="text" name="username" required="required" placeholder="Username" aria-label="Username">
+					<input class="form-control mr-sm-2" type="password" name="password" required="required" placeholder="Password" aria-label="Password">
 					<button class="btn btn-light my-2 my-sm-0" type="submit">Login</button>
 					<a href="inscription.php"><button class="btn btn-light my-2 my-sm-0 ml-1">S'inscrire</button></a>
 				</form>
+				<?= $decoButton ?>
 			</div>
 			
 		</nav>
