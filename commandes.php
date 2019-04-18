@@ -1,11 +1,17 @@
 <?php 
 
 	session_start();
+	require 'isNotLogged.php';
 	require 'db.php';
 
-	$sql = "SELECT * FROM biere";
-	$statement = $pdo->query($sql);
+	$reqBiere = "SELECT * FROM biere";
+	$statement = $pdo->query($reqBiere);
 	$bieres = $statement->fetchAll();
+
+	$reqUsers = 'SELECT * FROM users WHERE username = ?';
+	$state = $pdo->prepare($reqUsers);
+	$state->execute([$_SESSION['username']]);
+	$user = $state->fetch();
 
 ?>
 
@@ -26,41 +32,41 @@
 					<div class="form-row">
 						<div class="form-group col-12 col-md-6">
 							<label for="nom">Nom</label>
-							<input type="text" class="form-control" name="nom">
+							<input type="text" class="form-control" name="nom" value="<?= $user['nom'] ?>">
 						</div>
 						<div class="form-group col-12 col-md-6">
 							<label for="prenom">Prénom</label>
-							<input type="text" class="form-control" name="prenom">
+							<input type="text" class="form-control" name="prenom" value="<?= $user['prenom'] ?>">
 						</div>
 					</div>
 
 					<div class="form-row">
 						<div class="form-group col-12 col-md-3">
 							<label for="tel">Téléphone</label>
-							<input type="text" class="form-control" name="tel">
+							<input type="text" class="form-control" name="tel" value="<?= $user['telephone'] ?>">
 						</div>
 						<div class="form-group col">
 							<label for="email">Email</label>
-							<input type="email" class="form-control" name="email">
+							<input type="email" class="form-control" name="email" value="<?= $user['email'] ?>">
 						</div>
 					</div>
 
 					<div class="form-row">
 						<div class="form-group col-12 col-lg">
 							<label for="adresse">Adresse</label>
-							<input type="text" class="form-control" name="adresse">
+							<input type="text" class="form-control" name="adresse" value="<?= $user['adresse'] ?>">
 						</div>
 						<div class="form-group col-12 col-lg-3">
 							<label for="ville">Ville</label>
-							<input type="text" class="form-control" name="ville">
+							<input type="text" class="form-control" name="ville" value="<?= $user['ville'] ?>">
 						</div>
 						<div class="form-group col-12 col-lg-2">
 							<label for="pays">Pays</label>
-							<input type="text" class="form-control" name="pays">
+							<input type="text" class="form-control" name="pays" value="<?= $user['pays'] ?>">
 						</div>
 						<div class="form-group col-12 col-lg-2">
 							<label for="codePostal">Code postale</label>
-							<input type="text" class="form-control" name="codePostal">
+							<input type="text" class="form-control" name="codePostal" value="<?= $user['codePostal'] ?>">
 						</div>
 					</div>
 					<div class="table-responsive">

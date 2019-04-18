@@ -1,5 +1,6 @@
 <?php
-
+	session_start();
+	require 'isNotLogged.php';
 	require 'db.php';
 
 	if (!empty($_POST['nom'] && $_POST['prenom'] && $_POST['tel'] &&  $_POST['email'] && $_POST['adresse'] && $_POST['ville'] && $_POST['pays'] && $_POST['codePostal'])) {
