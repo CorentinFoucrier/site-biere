@@ -7,7 +7,7 @@ include('beerArray.php');
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<title>Commandes</title>
+		<title id="tire">Commandes</title>
 		<?php include('head.php'); ?>
 	</head>
 	<body>
@@ -90,7 +90,7 @@ include('beerArray.php');
 
 			<?php include('footer.php'); ?>
 		</div>
-		<script type="text/javascript" src="table_ttc.js"></script>
+		<script type="text/javascript" src="assets/js/table_ttc.js"></script>
 		<?php include('scripts.php'); ?>
 	</body>
 </html>

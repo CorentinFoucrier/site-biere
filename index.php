@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<title>Présentation entreprise</title>
+		<title id="titre">Présentation entreprise</title>
 		<?php include('head.php'); ?>
 	</head>
 	<body>
@@ -25,7 +25,7 @@
 
 			<section class="row">
 				<div class="col-12 col-md-6">
-					<img src="images\plan_stuttgart.jpg" alt="Plan Stuttgart" />
+					<img src="assets/img/plan_stuttgart.jpg" alt="Plan Stuttgart" />
 				</div>
 				<div class="col-md-6">
 					<div class="contact-list">

@@ -90,7 +90,7 @@ if (!empty($_GET['nom'] && $_GET['prenom'] && $_GET['tel'] &&  $_GET['email'] &&
 
 			<?php include('footer.php'); ?>
 		</div>
-		<script type="text/javascript" src="table_ttc.js"></script>
+		<script type="text/javascript" src="assets/js/table_ttc.js"></script>
 		<?php include('scripts.php'); ?>
 	</body>
 </html>
