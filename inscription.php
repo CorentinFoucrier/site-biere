@@ -101,56 +101,56 @@
 							<div class="form-row">
 								<div class="form-group col-12">
 									<label for="nom">Nom d'utilisateur</label>
-									<input type="text" class="form-control" name="username">
+									<input type="text" class="form-control" required="required" name="username">
 								</div>
 								<div class="form-group col-12">
 									<label for="email">Email</label>
-									<input type="email" class="form-control" name="email">
+									<input type="email" class="form-control" required="required" name="email">
 								</div>
 								<div class="form-group col-12 col-md-6">
 									<label for="prenom">Mot de passe</label>
-									<input type="password" class="form-control" name="password">
+									<input type="password" class="form-control" required="required" name="password">
 								</div>
 								<div class="form-group col-12 col-md-6">
 									<label for="prenom">Confirmation mot de passe</label>
-									<input type="password" class="form-control" name="passwordConfirmed">
+									<input type="password" class="form-control" required="required" name="passwordConfirmed">
 								</div>
 							</div>
 
 							<div class="form-row">
 								<div class="form-group col-12 col-md-6">
 									<label for="nom">Nom</label>
-									<input type="text" class="form-control" name="nom">
+									<input type="text" class="form-control" required="required" name="nom">
 								</div>
 								<div class="form-group col-12 col-md-6">
 									<label for="prenom">Prénom</label>
-									<input type="text" class="form-control" name="prenom">
+									<input type="text" class="form-control" required="required" name="prenom">
 								</div>
 							</div>
 
 							<div class="form-row">
 								<div class="form-group col-12 col-md-6">
 									<label for="tel">Téléphone</label>
-									<input type="text" class="form-control" name="tel">
+									<input type="text" class="form-control" required="required" name="tel">
 								</div>
 								<div class="form-group col-12 col-md-6">
 									<label for="ville">Ville</label>
-									<input type="text" class="form-control" name="ville">
+									<input type="text" class="form-control" required="required" name="ville">
 								</div>
 							</div>
 
 							<div class="form-row">
 								<div class="form-group col-12">
 									<label for="adresse">Adresse</label>
-									<input type="text" class="form-control" name="adresse">
+									<input type="text" class="form-control" required="required" name="adresse">
 								</div>
 								<div class="form-group col-12 col-md-6">
 									<label for="pays">Pays</label>
-									<input type="text" class="form-control" name="pays">
+									<input type="text" class="form-control" required="required" name="pays">
 								</div>
 								<div class="form-group col-12 col-md-6">
 									<label for="codePostal">Code postale</label>
-									<input type="text" class="form-control" name="codePostal">
+									<input type="text" class="form-control" required="required" name="codePostal">
 								</div>
 							</div>
 							<button type="submit" class="btn btn-light float-left">Envoyer</button>
