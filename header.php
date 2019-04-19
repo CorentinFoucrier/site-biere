@@ -12,7 +12,7 @@
 	$decoButton = "";
 	$displayNoneDeco = "";
 
-	if (isset($_SESSION['username'])) {
+	if (isset($_SESSION['id'])) {
 		$displayNone = 'd-none';
 		$decoButton = '
 		<a href="deconnexion.php" class="float-left"><button class="btn btn-light my-2 my-sm-0" type="submit">Déconexion</button></a>
@@ -41,11 +41,11 @@
         break;
     $index = "active";
 	}
-	if (isset($_SESSION['username'])) {
+	if (isset($_SESSION['id'])) {
 		require_once 'db.php';
-		$reqUsers = 'SELECT * FROM users WHERE username = ?';
+		$reqUsers = 'SELECT * FROM users WHERE id = ?';
 		$state = $pdo->prepare($reqUsers);
-		$state->execute([$_SESSION['username']]);
+		$state->execute([$_SESSION['id']]);
 		$user = $state->fetch();
 	}
 ?>

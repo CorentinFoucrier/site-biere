@@ -5,9 +5,9 @@
 	$returnMsgForm1 = "";
 	$returnMsgForm2 = "";
 	/* Connexion BDD où est l'id SESSION['id'] déposer dans SESSION à la connexion */
-	$reqUsers = 'SELECT * FROM users WHERE username = ?';
+	$reqUsers = 'SELECT * FROM users WHERE id = ?';
 	$state = $pdo->prepare($reqUsers);
-	$state->execute([$_SESSION['username']]);
+	$state->execute([$_SESSION['id']]);
 	$user = $state->fetch();
 
 	#################################

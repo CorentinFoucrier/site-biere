@@ -8,9 +8,9 @@
 	$statement = $pdo->query($reqBiere);
 	$bieres = $statement->fetchAll();
 
-	$reqUsers = 'SELECT * FROM users WHERE username = ?';
+	$reqUsers = 'SELECT * FROM users WHERE id = ?';
 	$state = $pdo->prepare($reqUsers);
-	$state->execute([$_SESSION['username']]);
+	$state->execute([$_SESSION['id']]);
 	$user = $state->fetch();
 
 ?>

@@ -16,7 +16,7 @@
 			/* Si $user est true alors on verif que le mdp est pareil qu'en BDD */
 			if ($user) {
 				if (password_verify($password, $user["password"])){
-					$_SESSION["username"] = $username;
+					$_SESSION["id"] = $user['id'];
 					header("Location: index.php");
 				}else{
 					header('Location: index.php');
