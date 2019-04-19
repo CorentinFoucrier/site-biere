@@ -10,12 +10,15 @@
 	$commandes = "";
 	$displayNone = "";
 	$decoButton = "";
+	$displayNoneDeco = "";
 
 	if (isset($_SESSION['username'])) {
 		$displayNone = 'd-none';
 		$decoButton = '
 		<a href="deconnexion.php" class="float-left"><button class="btn btn-light my-2 my-sm-0" type="submit">Déconexion</button></a>
 		';
+	} else {
+		$displayNoneDeco = 'd-none';
 	}
 
 	if ($short_uri === "") {
@@ -38,6 +41,13 @@
         break;
     $index = "active";
 	}
+	if (isset($_SESSION['username'])) {
+		require_once 'db.php';
+		$reqUsers = 'SELECT * FROM users WHERE username = ?';
+		$state = $pdo->prepare($reqUsers);
+		$state->execute([$_SESSION['username']]);
+		$user = $state->fetch();
+	}
 ?>
 
 <header class="row mb-3">
@@ -59,7 +69,7 @@
 					<li class="nav-item <?= $autreProduits ?>">
 						<a class="nav-link" href="autre-produits.php">Autres produits</a>
 					</li>
-					<li class="nav-item <?= $commandes ?>">
+					<li class="nav-item <?= $commandes ?> <?= $displayNoneDeco ?>">
 						<a class="nav-link" href="commandes.php">Commandes</a>
 					</li>
 				</ul>
@@ -67,8 +77,11 @@
 					<input class="form-control mr-sm-2 my-2 my-md-0" type="text" name="username" required="required" placeholder="Username" aria-label="Username">
 					<input class="form-control mr-sm-2" type="password" name="password" required="required" placeholder="Password" aria-label="Password">
 					<button class="btn btn-light my-2 my-sm-0" type="submit">Login</button>
-					<a href="inscription.php"><button class="btn btn-light my-2 my-sm-0 ml-1">S'inscrire</button></a>
+					
 				</form>
+				<a class="<?= $displayNone ?>" href="inscription.php"><button class="btn btn-light my-2 my-sm-0 ml-1">S'inscrire</button></a>
+				<span class="<?= $displayNoneDeco ?>">Bonjour, <strong> <?= $user['prenom'] ?> </strong> !</span>
+				<a class="<?= $displayNoneDeco ?>" href="mon_compte.php"><button class="btn btn-light my-2 my-sm-0 mx-1">Mon compte</button></a>
 				<?= $decoButton ?>
 			</div>
 			
