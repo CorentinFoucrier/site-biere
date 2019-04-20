@@ -40,33 +40,64 @@ if (!empty($_POST['sendForm2'])) {
 
 require 'db.php';
 
-$int = 1;
-$sql = 'SELECT `id_products`, `prix_ttc` FROM `commandes` WHERE `id_client` = ?';
+$idClientSimuler = 1; //en prod on utilisera l'id passé en _SESSION
+$sql = 'SELECT `id_products`, `prix_ttc`, `id` FROM `commandes` WHERE `id_client` = ?';
 $state = $pdo->prepare($sql);
-$state->execute([$int]);
+$state->execute([$idClientSimuler]);
 $user = $state->fetchAll();
 // var_dump($user);die();
-for ($i=0; $i < count($user) ; $i++) { 
 
-	$unserialize = unserialize($user[$i][0]);
-	// var_dump($unserialize);die();
-	$prixTTC = $user[$i][1];
-
-	foreach ($unserialize as $id_products => $quantite) {
-
-		$reqBiere = "SELECT `titre` FROM biere WHERE id = :id";
-		$statement = $pdo->prepare($reqBiere);
-		$statement->execute([
-			':id' => $id_products
-		]);
-		$bieres = $statement->fetch();
-
-		echo "Vous avez commander ".$quantite." bière.s ".$bieres['titre']." <br />";
-	}
-	echo "Pour un total TTC de {$prixTTC}€<br /><br />";
-}
 
 ?>
+
+<style type="text/css">
+table,
+td {
+    border: 1px solid #333;
+}
+
+thead,
+tfoot {
+    background-color: #333;
+    color: #fff;
+}
+</style>
+<table>
+	<thead>
+        <tr>
+            <th>Numero de commande</th>
+            <th>Vos produis</th>
+            <th>Total TTC</th>
+        </tr>
+    </thead>
+    <tbody>
+	<?php for ($i=0; $i < count($user) ; $i++) : 
+
+		$unserialize = unserialize($user[$i][0]);
+		// var_dump($unserialize);die();
+		$prixTTC = $user[$i][1];
+	?>
+		<tr>
+			<td><?= $user[$i][2] ?></td>
+			<td>
+			<?php foreach ($unserialize as $id_products => $quantite) : 
+
+			$reqBiere = "SELECT `titre` FROM biere WHERE id = :id";
+			$statement = $pdo->prepare($reqBiere);
+			$statement->execute([
+				':id' => $id_products
+			]);
+			$bieres = $statement->fetch(); 
+			
+			echo $quantite.", ".$bieres['titre']." <br />";?>
+			<?php endforeach; ?>
+			</td>
+			<td><?= $prixTTC ?></td>
+		</tr>
+	<?php endfor; ?>
+	</tbody>
+</table>
+
 <!--
 <h2>Form 1</h2>
 <form method="post" action="" name="form1">
