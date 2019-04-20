@@ -19,6 +19,8 @@ Site vitrine et "e-commerce" en PHP + SGBD
 9. Choisir un fichier -> biere.xml
   
 ### Configuration de config.sample.php
+1. Renommer config.sample.php en config.php
+2. Changer les champs en fonction
 ```php
 <?php
 	$dbhost = 'localhost'; //Adresse IP / DNS
