@@ -13,8 +13,9 @@
 		$ville = htmlentities($_POST['ville']);
 		$pays = htmlentities($_POST['pays']);
 		$codeP = htmlentities($_POST['codePostal']);
-		/* Création d'une variable qui contien un tableau vide pour plus tard */
+		/* Création de 2 variables qui contien un tableau vide pour plus tard */
 		$arrayTotalAmount = array();
+		$arrayIdBiere = array();
 		/* Connexion bdd et SELECT tout la table biere */
 		require_once 'db.php';
 		$sql = "SELECT * FROM biere";
@@ -92,6 +93,7 @@
 									/* array_push dépose dans le tableau vide en haut, le résultat en INT) */
 									array_push($arrayTotalAmount, $result);
 
+									array_push($arrayIdBiere, $biere['id']);
 							?>
 							<tr>
 								<?php /* titre en bdd */ ?>
@@ -108,6 +110,19 @@
 							<?php
 								endif;
 							endforeach;
+							$serialized = serialize($arrayIdBiere);
+							$totauxTTC = array_sum($arrayTotalAmount);
+							require_once 'db.php';
+							$reqCommande = "INSERT INTO `commandes` (`id_client`, `id_products`, `prix_ttc`) VALUES (:id_client, :id_products, :prix_ttc)";
+							$statement = $pdo->prepare($reqCommande);
+							$result = $statement->execute([
+								':id_client' 	=> $_SESSION['id'],
+								':id_products'	=> $serialized,
+								':prix_ttc' 	=> $totauxTTC
+							]);
+							if (!$result) {
+								die('Erreur SQL');
+							}
 							?>
 							<!-- Bas de tableau -->
 							<tfoot>
@@ -126,7 +141,6 @@
 						</tbody>
 					</table>
 				</div><!-- fin border -->
-
 			<?php include('footer.php'); ?>
 		</div>
 		<script type="text/javascript" src="assets/js/table_ttc.js"></script>
