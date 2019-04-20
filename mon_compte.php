@@ -35,7 +35,7 @@
 					":id"		=>	$id
 				]);
 				/* Si $result est TRUE ? Alors 1er msg : Sinon 2nd msg */
-				$returnMsgForm1 = ($result) ? "Votre nom d'utilisateur et mot de passe on bien été changer !" : "Erreur: veuillez réessayer !";
+				$returnMsgForm1 = ($result) ? "Votre nom d'utilisateur et mot de passe ont bien été changer !" : "Erreur: veuillez réessayer !";
 				/* (L'opérateur ternaire) */
 			}
 		}else{
@@ -69,7 +69,7 @@
 					":id"		=>	$id
 				]);
 				/* Si $result est TRUE ? Alors 1er msg : Sinon 2nd msg */
-				$returnMsgForm1 = ($result) ? "Vos coordonnées ont bien été changés !" : "Erreur: veuillez réessayer !";
+				$returnMsgForm1 = ($result) ? "Votre nom d'utilisateur a bien été changer !" : "Erreur: veuillez réessayer !";
 				/* (L'opérateur ternaire) */
 			}
 		}
@@ -100,7 +100,7 @@
 				"codePostal" 	=> 	$codePostal,
 				":id"			=>	$id
 			]);
-			$returnMsgForm2 = ($result) ? "Votre nom d'utilisateur a bien été changer !" : "Erreur: veuillez réessayer !";
+			$returnMsgForm2 = ($result) ? "Vos coordonnées ont bien été changés !" : "Erreur: veuillez réessayer !";
 		}else{
 
 		}
