@@ -186,6 +186,49 @@
 						</fieldset>
 					</form>
 				</div>
+				<?php 
+					require_once 'db.php';
+					$reqCommandes = 'SELECT `id_products`, `prix_ttc`, `id` FROM `commandes` WHERE `id_client` = ?';
+					$state = $pdo->prepare($reqCommandes);
+					$state->execute([$_SESSION['id']]);
+					$user = $state->fetchAll();
+				?>
+				<div class="table-responsive">
+					<table class="table table-striped mt-5">
+						<thead>
+					        <tr>
+					            <th>Numero de commande</th>
+					            <th>Vos produis</th>
+					            <th>Total TTC</th>
+					        </tr>
+					    </thead>
+					    <tbody>
+						<?php for ($i=0; $i < count($user) ; $i++) : 
+
+							$unserialize = unserialize($user[$i][0]);
+							$prixTTC = $user[$i][1]; 
+						?>
+							<tr>
+								<td><?= $user[$i][2] ?></td>
+								<td>
+								<?php foreach ($unserialize as $id_products => $quantite) : 
+
+								$reqBiere = "SELECT `titre` FROM biere WHERE id = :id";
+								$statement = $pdo->prepare($reqBiere);
+								$statement->execute([
+									':id' => $id_products
+								]);
+								$bieres = $statement->fetch(); 
+								
+								echo $quantite.", ".$bieres['titre']." <br />";?>
+								<?php endforeach; ?>
+								</td>
+								<td><?= number_format($prixTTC, 2, ',', '.') ?></td>
+							</tr>
+						<?php endfor; ?>
+						</tbody>
+					</table>
+				</div>
 			<?php include('footer.php'); ?>
 		</div>
 	<?php include('scripts.php'); ?>

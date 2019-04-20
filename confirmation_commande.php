@@ -93,7 +93,8 @@
 									/* array_push dépose dans le tableau vide en haut, le résultat en INT) */
 									array_push($arrayTotalAmount, $result);
 
-									array_push($arrayIdBiere, $biere['id']);
+									// array_push($arrayIdBiere, $biere['id']);
+									$arrayIdBiere += [ $biere['id'] => $_POST['beerName'.$biere['id']] ]
 							?>
 							<tr>
 								<?php /* titre en bdd */ ?>
