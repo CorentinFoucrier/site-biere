@@ -26,12 +26,17 @@
 		if (!empty($username && $password && $passwordConfirmed && $nom && $prenom && $tel && $ville && $adresse && $pays && $codePostal)) {
 			/* récupération de l'utilisateur et de l'email */
 			require_once 'db.php';
-			$sql = 'SELECT * FROM users WHERE username = ?, email = ?';
+			$sql = 'SELECT `email`, `username` FROM `users` WHERE `email` = :email AND `username` = :username';
 			$statement = $pdo->prepare($sql);
-			$statement->execute([$username, $email]);
+			$statement->execute([
+				':username' => $username,
+				':email'	=> $email
+			]);
 			$user = $statement->fetch();
+
 			/* Si $user est false (l'utilisateur et email existe pas) */
 			if (!$user) {
+				var_dump($user);
 				/* Verif que le mdp soit dans le format désiré */
 				if (strlen($password) <= 10 && strlen($password) >= 5) { // Format à déposer dans la condition
 					/* Si mot de passe identiques = true */
@@ -54,20 +59,32 @@
 						]);
 						if ($result) {
 							/* Tout s'est bien passé */
-							session_start();
-							$_SESSION['username'] = $username;
-							header("Location: index.php");
+							require_once 'db.php';
+							$reqUser = 'SELECT * FROM users WHERE username = ?';
+							$state = $pdo->prepare($reqUser);
+							$state->execute([$username]);
+							$user = $state->fetch();
+							if ($user) {
+								session_start();
+								$_SESSION['id'] = $user['id'];
+								header("Location: index.php");
+							}else{
+								die('Erreur SQL');
+							}
 						}else{
-							die('erreur enregistrement en base de donnée');
+							die('Erreur enregistrement en base de donnée');
 							/* TODO : Signaler l'erreur */
 						}
 					}else{
+						die('Les mot de passe ne sont pas identiques');
 						/* TODO : Les mot de passe ne sont pas identiques */
 					}
 				}else{
+					die('Mot de passe n\'est pas entre 5 et 10 caractères');
 					/* TODO : Mot de passe n'est pas entre 5 et 10 caractères */
 				}
 			}else{
+				die('L\'uilisateur ou l\'email existe déjà');
 				/* TODO : L'uilisateur ou l'email existe déjà */
 			}
 		}else{

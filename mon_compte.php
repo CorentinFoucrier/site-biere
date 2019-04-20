@@ -116,6 +116,7 @@
 	<body>
 		<div id="oppacity-bg" class="container">
 			<?php include('header.php'); ?>
+			<div class="row">
 				<div class="col-lg-6">
 					<form name="form1" method="post" action="" class="p-2">
 						<fieldset>
@@ -192,43 +193,49 @@
 					$state = $pdo->prepare($reqCommandes);
 					$state->execute([$_SESSION['id']]);
 					$user = $state->fetchAll();
+
+					if ($user) :
 				?>
-				<div class="table-responsive">
-					<table class="table table-striped mt-5">
-						<thead>
-					        <tr>
-					            <th>Numero de commande</th>
-					            <th>Vos produis</th>
-					            <th>Total TTC</th>
-					        </tr>
-					    </thead>
-					    <tbody>
-						<?php for ($i=0; $i < count($user) ; $i++) : 
+				<div class="col-lg-6">
+					<div class="table-responsive">
+						<table class="table table-striped mt-5">
+							<thead>
+								<tr>
+									<th>Numero de commande</th>
+									<th>Vos produis</th>
+									<th>Total TTC</th>
+								</tr>
+							</thead>
+							<tbody>
+							<?php for ($i=0; $i < count($user) ; $i++) : 
 
-							$unserialize = unserialize($user[$i][0]);
-							$prixTTC = $user[$i][1]; 
-						?>
-							<tr>
-								<td><?= $user[$i][2] ?></td>
-								<td>
-								<?php foreach ($unserialize as $id_products => $quantite) : 
+								$unserialize = unserialize($user[$i][0]);
+								$prixTTC = $user[$i][1]; 
+							?>
+								<tr>
+									<td><?= $user[$i][2] ?></td>
+									<td>
+									<?php foreach ($unserialize as $id_products => $quantite) : 
 
-								$reqBiere = "SELECT `titre` FROM biere WHERE id = :id";
-								$statement = $pdo->prepare($reqBiere);
-								$statement->execute([
-									':id' => $id_products
-								]);
-								$bieres = $statement->fetch(); 
-								
-								echo $quantite.", ".$bieres['titre']." <br />";?>
-								<?php endforeach; ?>
-								</td>
-								<td><?= number_format($prixTTC, 2, ',', '.') ?></td>
-							</tr>
-						<?php endfor; ?>
-						</tbody>
-					</table>
-				</div>
+									$reqBiere = "SELECT `titre` FROM biere WHERE id = :id";
+									$statement = $pdo->prepare($reqBiere);
+									$statement->execute([
+										':id' => $id_products
+									]);
+									$bieres = $statement->fetch(); 
+									
+									echo $quantite.", ".$bieres['titre']." <br />";?>
+									<?php endforeach; ?>
+									</td>
+									<td><?= number_format($prixTTC, 2, ',', '.') ?></td>
+								</tr>
+							<?php endfor; ?>
+							</tbody>
+						</table>
+					</div><!-- Fin table responsive -->
+				</div><!-- Fin col -->
+				<?php endif; ?>
+			</div>
 			<?php include('footer.php'); ?>
 		</div>
 	<?php include('scripts.php'); ?>
