@@ -43,18 +43,21 @@
 					<div class="row box">
 						<!-- HEADER -->
 						<div class="col-12">
-							<? /* affiche titre qui est dans la value $biere[] */ ?>							<h3 class="my-3 text-center text-uppercase"><?php echo $biere['titre']; ?></h3>
+							<?php /* affiche titre qui est dans la value $biere[] */ ?>
+							<h3 class="my-3 text-center text-uppercase"><?php echo $biere['titre']; ?></h3>
 						</div>
 						<!-- IMG -->
 						<div class="col-12 box-borders">
-							<? /* affiche img qui est dans la value $biere[] */ ?>							<img class="my-3 mx-auto d-block" src="<?php echo $biere['img']; ?>" height="250" />
+							<?php /* affiche img qui est dans la value $biere[] */ ?>
+							<img class="my-3 mx-auto d-block" src="<?php echo $biere['img']; ?>" height="250" />
 						</div>
 						<!-- Description -->
 						<div class="col-12 ">
-							<?
+							<?php
 								/* affiche description qui est dans la value $biere[] et formater avec la fonction
 								add3dots($string, $repl, $limit) => add3dots($biere['description'], "...", 100)*/
-							?>							<p class="my-1"><?php echo add3dots($biere['description'], "...", 100); ?></p>
+							?>
+							<p class="my-1"><?php echo add3dots($biere['description'], "...", 100); ?></p>
 						</div>
 						<!-- Prix -->
 						<div class="col-12">
