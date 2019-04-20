@@ -35,11 +35,32 @@ if (!empty($_POST['sendForm2'])) {
 }
 */
 
-$notes = array(7,3,8,9); // Formation d'un array pour la forme
-echo serialize($notes); // echo du résultat de serialize() sur cet array
+//$notes = array(7,3,8,9); // Formation d'un array pour la forme
+//echo serialize($notes); // echo du résultat de serialize() sur cet array
 
+require 'db.php';
 
+$reqBiere = "SELECT * FROM biere";
+$statement = $pdo->query($reqBiere);
+$bieres = $statement->fetchAll();
 
+$int = 3;
+$sql = 'SELECT `id_products` FROM `commandes` WHERE `id` = ?';
+$state = $pdo->prepare($sql);
+$state->execute([$int]);
+$user = $state->fetch();
+$unserialize = unserialize($user['id_products']);
+foreach ($unserialize as $id_products => $quantite) {
+
+	$reqBiere = "SELECT `titre` FROM biere WHERE id = :id";
+	$statement = $pdo->prepare($reqBiere);
+	$statement->execute([
+		':id' => $id_products
+	]);
+	$bieres = $statement->fetch();
+
+	echo "vous avez commander ".$quantite." bière.s ".$bieres['titre']."<br />";
+}
 
 ?>
 <!--
