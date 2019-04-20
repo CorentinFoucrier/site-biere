@@ -14,12 +14,6 @@
 	$user = $state->fetch(); // le résultat de la requête est dans $user[] qui est un tableau.
 
 ?>
-<?
-	#####################################
-	#### Ne pas faire varier le DOM  ####
-	#### Utilisation des childsNodes ####
-	#####################################
-?>
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
@@ -85,25 +79,22 @@
 								</tr>
 							</thead>
 							<tbody>
-								<? 	/* commentaire en php car utilisation childNodes pour js :( */
-									/* TODO : changer les childNodes par des id */ 
-								?>
-								<? //Boucle sur $bieres[] qui est un tableau sortie de SQL ?>
+								<?php //Boucle sur $bieres[] qui est un tableau sortie de SQL ?>
 								<?php foreach ($bieres as $biere) : //foreach $key as $value ?>
-								<? /* L'id pour les childNodes passé à la fonction pomme() */ ?>
+								<?php /* L'id pour les childNodes passé à la fonction pomme() */ ?>
 								<tr id="<?= $biere['id'] ?>">
 									<th scope="row"><?= $biere['titre'] ?></th>
-									<? /* affichage des prixHT et prixTTC */ ?>
-									<td>€ <?= number_format($biere['prix'], 2, ',', '.'); ?></td>
-									<td>€ <?= number_format($biere['prix']*1.2, 2, ',', '.'); ?></td>
+									<?php /* affichage des prixHT et prixTTC */ ?>
+									<td class="prixHT">€ <?= number_format($biere['prix'], 2, ',', '.'); ?></td>
+									<td class="prixTTC">€ <?= number_format($biere['prix']*1.2, 2, ',', '.'); ?></td>
 									<td>
-										<? 	/* fonction pomme() avec en param l'id le la biere à l'instant T de la boucle */ 
-											/* l'attibut name prends beerName concaténée avec l'id 'bouclé' qui nous servira
-											   dans la page de confirmation pour pointé la quantité. */
+										<?php 	/* fonction pomme() avec en param l'id le la biere à l'instant T de la boucle 
+												l'attibut name prends beerName concaténée avec l'id 'bouclé' qui nous servira
+											   	dans la page de confirmation pour pointé la quantité. */
 										?>
-										<input class="form-control" onclick="pomme(<?= $biere['id'] ?>)" type="number" value="0" min="0" name="<?= 'beerName'.$biere['id'] ?>">
-										<? /* input caché pour JS sert de référence */ ?>
-										<input id="prixInitial<?= $biere['id'] ?>" type="hidden" value="<?= $biere['prix'] ?>">
+										<input class="form-control quantite" onclick="pomme(<?= $biere['id'] ?>)" type="number" value="0" min="0" name="<?= 'beerName'.$biere['id'] ?>">
+										<?php /* input caché pour JS sert de référence */ ?>
+										<input class="prixInitial" id="prixInitial<?= $biere['id'] ?>" type="hidden" value="<?= $biere['prix'] ?>">
 									</td>
 								</tr>
 								<?php endforeach; ?>

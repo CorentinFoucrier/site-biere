@@ -94,15 +94,15 @@
 
 							?>
 							<tr>
-								<? /* titre en bdd */ ?>
+								<?php /* titre en bdd */ ?>
 								<td><?= $biere['titre']; ?></td>
-								<? /* prixHT en bdd puis formatage en STRING avec virgule et 2 chiffre après "," */ ?>
+								<?php /* prixHT en bdd puis formatage en STRING avec virgule et 2 chiffre après "," */ ?>
 								<td><?= '€ '.number_format($biere['prix'], '2', ',', '.'); ?></td>
-								<? /* prixHT bdd x1.2 puis formatage ... */ ?>
+								<?php /* prixHT bdd x1.2 puis formatage ... */ ?>
 								<td><?= '€ '.number_format($biere['prix']*1.2, '2', ',', '.'); ?></td>
-								<? /* Quantité.s */ ?>
+								<?php /* Quantité.s */ ?>
 								<td><?= $_POST['beerName'.$biere['id']]; ?></td>
-								<? /* Total ttc calculé ci-dessous puis formatage */ ?>
+								<?php /* Total ttc calculé ci-dessous puis formatage */ ?>
 								<td><?= '€ '.number_format(($_POST['beerName'.$biere['id']]*$biere['prix'])*1.2, '2', ',', '.'); ?></td>
 							</tr>
 							<?php

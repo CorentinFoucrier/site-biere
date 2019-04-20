@@ -15,7 +15,7 @@ $result = $statement->execute([
 ]);
 }
 */
-
+/*
 if (!empty($_POST['sendForm1'])) {
 	$nom = htmlentities($_POST['nom']);
 	if (!empty($nom)) {
@@ -33,9 +33,16 @@ if (!empty($_POST['sendForm2'])) {
 		echo 'le FORM 2 est vide !';
 	}
 }
+*/
+
+$notes = array(7,3,8,9); // Formation d'un array pour la forme
+echo serialize($notes); // echo du résultat de serialize() sur cet array
+
+
 
 
 ?>
+<!--
 <h2>Form 1</h2>
 <form method="post" action="" name="form1">
 	<input type="text" name="nom" value="Corentin">
@@ -46,3 +53,4 @@ if (!empty($_POST['sendForm2'])) {
 	<input type="text" name="age" value="Age: 22">
 	<button type="submit" name="sendForm2" value="sendForm2" for="form2">Envoyer</button>
 </form>
+-->
