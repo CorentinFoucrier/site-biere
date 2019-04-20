@@ -1,3 +1,22 @@
+/*
+	Google Chrome only :
+	changer la couleur du background en autofill.
+*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+/*
+	Google Chrome only :
+	changer la couleur du texte en autofill.
+*/
+input:-webkit-autofill {
+    -webkit-text-fill-color: #5BD445 !important;
+}
+
 body {
 	background-color: #D17200;
 	color: #5ADABD;
@@ -92,7 +111,7 @@ input, .form-control {
 	background-color: rgba(0, 0, 0, 0.15);
 	color: #5BD445;
 	border-color: black;
-	box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.15)
+	box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.15);
 }
 
 legend {

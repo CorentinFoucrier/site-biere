@@ -3,8 +3,8 @@
 	require 'isLogged.php';
 	/* Vérif que le formulaire ($_POST) n'est pas vide */
 	if(!empty($_POST)){
-		$username = strtolower($_POST['username']);
-		$password = $_POST['password'];
+		$username = htmlentities(strtolower($_POST['username']));
+		$password = htmlentities($_POST['password']);
 		/* verif que les champs ne sont pas vides */
 		if (!empty($username && $password)) {
 			/* récupération de l'utilisateur */

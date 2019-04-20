@@ -3,18 +3,23 @@
 	session_start();
 	require 'isNotLogged.php';
 	require 'db.php';
-
+	/* Connexion bdd et SELECT tout la table biere */
 	$reqBiere = "SELECT * FROM biere";
 	$statement = $pdo->query($reqBiere);
-	$bieres = $statement->fetchAll();
-
+	$bieres = $statement->fetchAll(); // le résultat de la requête est dans $biere[] qui est un tableau.
+	/* Connexion bdd et SELECT tout la ligne OU est l'id passé en _SESSION */
 	$reqUsers = 'SELECT * FROM users WHERE id = ?';
 	$state = $pdo->prepare($reqUsers);
 	$state->execute([$_SESSION['id']]);
-	$user = $state->fetch();
+	$user = $state->fetch(); // le résultat de la requête est dans $user[] qui est un tableau.
 
 ?>
-
+<?
+	#####################################
+	#### Ne pas faire varier le DOM  ####
+	#### Utilisation des childsNodes ####
+	#####################################
+?>
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
@@ -32,7 +37,7 @@
 					<div class="form-row">
 						<div class="form-group col-12 col-md-6">
 							<label for="nom">Nom</label>
-							<input type="text" class="form-control" name="nom" value="<?= $user['nom'] ?>">
+							<input type="text" class="form-control" name="nom" value="<?= $user['nom'] ?>"> <!-- affichage nom etc. partout-->
 						</div>
 						<div class="form-group col-12 col-md-6">
 							<label for="prenom">Prénom</label>
@@ -80,13 +85,24 @@
 								</tr>
 							</thead>
 							<tbody>
-								<?php foreach ($bieres as $biere) : ?>
+								<? 	/* commentaire en php car utilisation childNodes pour js :( */
+									/* TODO : changer les childNodes par des id */ 
+								?>
+								<? //Boucle sur $bieres[] qui est un tableau sortie de SQL ?>
+								<?php foreach ($bieres as $biere) : //foreach $key as $value ?>
+								<? /* L'id pour les childNodes passé à la fonction pomme() */ ?>
 								<tr id="<?= $biere['id'] ?>">
 									<th scope="row"><?= $biere['titre'] ?></th>
+									<? /* affichage des prixHT et prixTTC */ ?>
 									<td>€ <?= number_format($biere['prix'], 2, ',', '.'); ?></td>
 									<td>€ <?= number_format($biere['prix']*1.2, 2, ',', '.'); ?></td>
 									<td>
+										<? 	/* fonction pomme() avec en param l'id le la biere à l'instant T de la boucle */ 
+											/* l'attibut name prends beerName concaténée avec l'id 'bouclé' qui nous servira
+											   dans la page de confirmation pour pointé la quantité. */
+										?>
 										<input class="form-control" onclick="pomme(<?= $biere['id'] ?>)" type="number" value="0" min="0" name="<?= 'beerName'.$biere['id'] ?>">
+										<? /* input caché pour JS sert de référence */ ?>
 										<input id="prixInitial<?= $biere['id'] ?>" type="hidden" value="<?= $biere['prix'] ?>">
 									</td>
 								</tr>

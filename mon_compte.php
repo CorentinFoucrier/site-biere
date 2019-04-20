@@ -2,6 +2,10 @@
 	session_start();
 	require 'db.php';
 	require 'isNotLogged.php';
+	/*
+		Définition des variable pour contrer l'erreur
+		undefined en cas d'utilisation du debugeur "xdebug".
+	*/
 	$returnMsgForm1 = "";
 	$returnMsgForm2 = "";
 	/* Connexion BDD où est l'id SESSION['id'] déposer dans SESSION à la connexion */
