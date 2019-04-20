@@ -40,26 +40,30 @@ if (!empty($_POST['sendForm2'])) {
 
 require 'db.php';
 
-$reqBiere = "SELECT * FROM biere";
-$statement = $pdo->query($reqBiere);
-$bieres = $statement->fetchAll();
-
-$int = 3;
-$sql = 'SELECT `id_products` FROM `commandes` WHERE `id` = ?';
+$int = 1;
+$sql = 'SELECT `id_products`, `prix_ttc` FROM `commandes` WHERE `id_client` = ?';
 $state = $pdo->prepare($sql);
 $state->execute([$int]);
-$user = $state->fetch();
-$unserialize = unserialize($user['id_products']);
-foreach ($unserialize as $id_products => $quantite) {
+$user = $state->fetchAll();
+// var_dump($user);die();
+for ($i=0; $i < count($user) ; $i++) { 
 
-	$reqBiere = "SELECT `titre` FROM biere WHERE id = :id";
-	$statement = $pdo->prepare($reqBiere);
-	$statement->execute([
-		':id' => $id_products
-	]);
-	$bieres = $statement->fetch();
+	$unserialize = unserialize($user[$i][0]);
+	// var_dump($unserialize);die();
+	$prixTTC = $user[$i][1];
 
-	echo "vous avez commander ".$quantite." bière.s ".$bieres['titre']."<br />";
+	foreach ($unserialize as $id_products => $quantite) {
+
+		$reqBiere = "SELECT `titre` FROM biere WHERE id = :id";
+		$statement = $pdo->prepare($reqBiere);
+		$statement->execute([
+			':id' => $id_products
+		]);
+		$bieres = $statement->fetch();
+
+		echo "Vous avez commander ".$quantite." bière.s ".$bieres['titre']." <br />";
+	}
+	echo "Pour un total TTC de {$prixTTC}€<br /><br />";
 }
 
 ?>
