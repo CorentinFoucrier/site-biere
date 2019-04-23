@@ -15,7 +15,7 @@
 	if (isset($_SESSION['id'])) {
 		$displayNone = 'd-none';
 		$decoButton = '
-		<a href="deconnexion.php" class="float-left"><button class="btn btn-light my-2 my-sm-0" type="submit">Déconexion</button></a>
+		<a href="deconnexion.php" class="float-left"><button class="btn btn-light my-2 my-sm-0" type="submit">Déconnexion</button></a>
 		';
 	} else {
 		$displayNoneDeco = 'd-none';
@@ -79,9 +79,9 @@
 					<button class="btn btn-light my-2 my-sm-0" type="submit">Login</button>
 					
 				</form>
-				<a class="<?= $displayNone ?>" href="inscription.php"><button class="btn btn-light my-2 my-sm-0 ml-1">S'inscrire</button></a>
+				<a class="<?= $displayNone ?>" href="inscription.php"><button class="btn btn-light my-2 my-sm-0 ml-sm-1">S'inscrire</button></a>
 				<span class="<?= $displayNoneDeco ?>">Bonjour, <strong> <?= $user['prenom'] ?> </strong> !</span>
-				<a class="<?= $displayNoneDeco ?>" href="mon_compte.php"><button class="btn btn-light my-2 my-sm-0 mx-1">Mon compte</button></a>
+				<a class="<?= $displayNoneDeco ?>" href="mon_compte.php"><button class="btn btn-light my-2 my-sm-0 mx-md-1">Mon compte</button></a>
 				<?= $decoButton ?>
 			</div>
 			
