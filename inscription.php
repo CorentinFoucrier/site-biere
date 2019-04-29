@@ -148,7 +148,7 @@
 							<div class="form-row">
 								<div class="form-group col-12 col-md-6">
 									<label for="tel">Téléphone</label>
-									<input type="text" class="form-control" required="required" name="tel">
+									<input type="tel" class="form-control" required="required" name="tel">
 								</div>
 								<div class="form-group col-12 col-md-6">
 									<label for="ville">Ville</label>
