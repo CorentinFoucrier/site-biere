@@ -192,9 +192,10 @@
 					$reqCommandes = 'SELECT `id_products`, `prix_ttc`, `id` FROM `commandes` WHERE `id_client` = ?';
 					$state = $pdo->prepare($reqCommandes);
 					$state->execute([$_SESSION['id']]);
-					$user = $state->fetchAll();
+					$resultCommandes = $state->fetchAll();
+					// var_dump($resultCommandes);die;
 
-					if ($user) :
+					if ($resultCommandes) :
 				?>
 				<div class="col-lg-6">
 					<div class="table-responsive">
@@ -207,13 +208,13 @@
 								</tr>
 							</thead>
 							<tbody>
-							<?php for ($i=0; $i < count($user) ; $i++) : 
+							<?php for ($i=0; $i < count($resultCommandes) ; $i++) : 
 
-								$unserialize = unserialize($user[$i][0]);
-								$prixTTC = $user[$i][1]; 
+								$unserialize = unserialize($resultCommandes[$i]['id_products']); // $unserialize est un tableau[];
+								$prixTTC = $resultCommandes[$i]['prix_ttc']; 
 							?>
 								<tr>
-									<td><?= $user[$i][2] ?></td>
+									<td><?= $resultCommandes[$i]['id'] ?></td>
 									<td>
 									<?php foreach ($unserialize as $id_products => $quantite) : 
 
