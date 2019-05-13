@@ -7,7 +7,7 @@
 	#################################
 	############# LOGIN #############
 	#################################
-	if(!empty($_POST['form1'])){
+	if(!empty($_POST['sendForm1'])){
 		$email = htmlentities(strtolower($_POST['email']));
 		$password = htmlentities($_POST['password']);
 		/* verif que les champs ne sont pas vides */
@@ -41,7 +41,7 @@
 	#################################
 	########## INSCRIPTION ##########
 	#################################
-	if(!empty($_POST['form2'])){
+	if(!empty($_POST['sendForm2'])){
 		$username = htmlentities($_POST['username']);
 		$email = htmlentities($_POST['email']);
 		$password = htmlentities($_POST['password']);
@@ -140,7 +140,7 @@
 							<h1>Connexion</h1>
 						</div>
 						<div>
-							<form class="p-4" name="form1">
+							<form class="p-4" name="form1" method="post" action="">
 								<div class="form-group">
 									<label for="email">Votre Email</label> 
 									<div class="input-group">
@@ -161,7 +161,7 @@
 												<i class="fa fa-unlock-alt"></i>
 											</div>
 										</div> 
-										<input id="text" name="text" placeholder="********" type="text" class="form-control" aria-describedby="textHelpBlock" required="required">
+										<input id="text" name="password" placeholder="********" type="password" class="form-control" aria-describedby="textHelpBlock" required="required">
 									</div> 
 									<u class="form-text"><a href="?pwd=pass_lost">Mot de passe perdu ?</a></u>
 								</div>

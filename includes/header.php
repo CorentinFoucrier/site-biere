@@ -24,11 +24,9 @@
 				<?php endif ?>
 			</ul>
 			<ul class="navbar-nav ml-auto">
-				<?php if (isConnect(false)) : ?>
-				<li class="nav-item">
+				<li class="<?php echo (isConnect(true)) ? 'd-none' : '' ?> nav-item">
 					<a class="nav-link" href="login.php"><i class="fas fa-user"></i> Connexion/ Inscription</a>
 				</li>
-				<?php endif ?>
 				<?php if (isConnect(true)) : ?>
 				<li class="nav-item">
 					<a class="nav-link" href="mon_compte.php"><i class="fas fa-id-card"></i> Profil</a></a>
