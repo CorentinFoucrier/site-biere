@@ -1,5 +1,5 @@
 <?php
-function userOnly($verify=false){
+function isConnect($verify=false){
 	if (session_status() != PHP_SESSION_ACTIVE){
 		session_start();
 	}

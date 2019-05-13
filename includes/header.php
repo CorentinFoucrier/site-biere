@@ -17,26 +17,26 @@
 				<li class="nav-item">
 					<a class="nav-link" href="boutique.php"><i class="fas fa-store"></i> Boutique</a>
 				</li>
-				<?php if (userOnly(true)) : ?>
+				<?php if (isConnect(true)) : ?>
 				<li class="nav-item">
 					<a class="nav-link" href="#"><i class="fas fa-receipt"></i> Bon de commande</a>
 				</li>
 				<?php endif ?>
 			</ul>
 			<ul class="navbar-nav ml-auto">
-				<?php if (userOnly(false)) : ?>
+				<?php if (isConnect(false)) : ?>
 				<li class="nav-item">
-					<a class="nav-link" href="#"><i class="fas fa-user"></i> Connexion/ Inscription</a>
+					<a class="nav-link" href="login.php"><i class="fas fa-user"></i> Connexion/ Inscription</a>
 				</li>
 				<?php endif ?>
-				<?php if (userOnly(true)) : ?>
+				<?php if (isConnect(true)) : ?>
 				<li class="nav-item">
-					<a class="nav-link" href="#"><i class="fas fa-id-card"></i> Profil</a></a>
+					<a class="nav-link" href="mon_compte.php"><i class="fas fa-id-card"></i> Profil</a></a>
 				</li>
 				<?php endif ?>
-				<?php if (userOnly(true)) : ?>
+				<?php if (isConnect(true)) : ?>
 				<li class="nav-item">
-					<a class="nav-link" href="#"><i class="fas fa-power-off"></i> Deconnexion</a></a>
+					<a class="nav-link" href="deconnexion.php"><i class="fas fa-power-off"></i> Deconnexion</a></a>
 				</li>
 				<?php endif ?>
 			</ul>

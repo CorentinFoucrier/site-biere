@@ -5,10 +5,10 @@
 <html lang="fr">
 	<head>
 		<title id="titre">Présentation entreprise</title>
-		<?php include('head.php'); ?>
+		<?php require 'includes/head.php'; ?>
 	</head>
 	<body>
-		<?php include('header.php'); ?>
+		<?php require 'includes/header.php'; ?>
 		<div class="container-fluid">
 			<section class="row">
 				<div class="col-12 col-md-12">
@@ -46,8 +46,37 @@
 					</div>
 				</div>
 			</section>
-			<?php include('footer.php'); ?>
+
+			<section class="row">
+				<div id="contact" class="col-12">
+					<p class="h1 text-center">Contactez nous !</p>
+					<hr />
+				</div>
+				<div class="col-12 col-md-6 offset-md-3">
+					<form class="p-4">
+						<div class="form-group">
+							<label for="text">Votre email de contact</label> 
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<div class="input-group-text">
+										<i class="fa fa-at"></i>
+									</div>
+								</div> 
+								<input id="text" name="text" placeholder="example@example.com" type="text" class="form-control" required="required">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="emailMsg">Votre message</label> 
+							<textarea id="emailMsg" name="emailMsg" cols="40" rows="5" class="form-control" required="required"></textarea>
+						</div> 
+						<div class="form-group">
+							<button name="submit" type="submit" class="btn btn-primary">Envoyer</button>
+						</div>
+					</form>
+				</div>
+			</section>
 		</div>
-	<?php include('scripts.php'); ?>
+	<?php require 'includes/footer.php'; ?>
+	<?php require 'includes/scripts.php'; ?>
 	</body>
 </html>

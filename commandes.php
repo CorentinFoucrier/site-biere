@@ -1,8 +1,10 @@
 <?php 
+	require_once 'includes/function.php';
+	require_once 'db.php';
 
-	session_start();
-	require 'isNotLogged.php';
-	require 'db.php';
+	if (isConnect(false)) { //si n'est pas connecter retour index
+		header('Location: index.php');
+	}
 	/* Connexion bdd et SELECT tout la table biere */
 	$reqBiere = "SELECT * FROM biere";
 	$statement = $pdo->query($reqBiere);
@@ -18,11 +20,11 @@
 <html lang="fr">
 	<head>
 		<title id="tire">Commandes</title>
-		<?php include('head.php'); ?>
+		<?php require 'includes/head.php'; ?>
 	</head>
 	<body>
 		<div id="oppacity-bg" class="container">
-			<?php include('header.php'); ?>
+			<?php require 'includes/header.php'; ?>
 
 			<form method="post" action="confirmation_commande.php" class="border border-white rounded p-5">
 				<fieldset>
@@ -106,9 +108,9 @@
 			</form>
 
 
-			<?php include('footer.php'); ?>
+			<?php require 'includes/footer.php'; ?>
 		</div>
 		<script type="text/javascript" src="assets/js/table_ttc.js"></script>
-		<?php include('scripts.php'); ?>
+		<?php require 'includes/scripts.php'; ?>
 	</body>
 </html>

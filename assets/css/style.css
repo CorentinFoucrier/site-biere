@@ -1,3 +1,14 @@
 body {
 	background-color: #FAFAFA;
 }
+
+footer {
+	background-color: #343A40;
+	color: #FAFAFA;
+}
+
+.loginForm {
+	border-radius: 5px;
+	background-color: #f2f2f2;
+	border: 1px solid #cecece;
+}
