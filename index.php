@@ -8,8 +8,8 @@
 		<?php include('head.php'); ?>
 	</head>
 	<body>
-		<div id="oppacity-bg" class="container">
-			<?php include('header.php'); ?>
+		<?php include('header.php'); ?>
+		<div class="container-fluid">
 			<section class="row">
 				<div class="col-12 col-md-12">
 					<h1 class="text-center">Qui somme nous ?</h1>
@@ -21,14 +21,14 @@
 
 			<section class="row">
 				<div id="contact" class="col-12">
-					<h2 class="text-center">Contactez-nous !</h2>
+					<p class="h1 text-center">Où somme nous ?</p>
 					<hr />
 				</div>
 			</section>
 
 			<section class="row">
 				<div class="col-12 col-md-6">
-					<img src="assets/img/plan_stuttgart.jpg" alt="Plan Stuttgart" />
+					<img class="img-fluid" src="assets/img/plan_stuttgart.jpg" alt="Plan Stuttgart" />
 				</div>
 				<div class="col-md-6">
 					<div class="contact-list">

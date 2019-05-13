@@ -34,8 +34,8 @@
 		<?php include('head.php'); ?>
 	</head>
 	<body>
+		<?php include('header.php'); ?>
 		<div id="oppacity-bg" class="container">
-			<?php include('header.php'); ?>
 			<section class="row">
 				<!-- Boucle sur $bieres[] qui est un tableau sortie de SQL -->
 				<?php foreach ($bieres as $biere) : //foreach $key as $value ?>
