@@ -13,7 +13,7 @@
 		$user = $state->fetch();
 		if ($user) {
 			/* si token est validé alors on passe en get pour afficher l'alert */
-			if ($_GET['t'] == $user['token'] && time() < ($user['tokenCreatedAt']+300)) {
+			if ($_GET['t'] == $user['token'] && time() < ($user['tokenCreatedAt']+3600)) {
 				require_once 'db.php';
 				$sql = "UPDATE `users` SET `tokenVerify` = 'true' WHERE `users`.`id` = :id";
 				$statement = $pdo->prepare($sql);

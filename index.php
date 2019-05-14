@@ -49,10 +49,10 @@
 
 			<section class="row">
 				<div id="contact" class="col-12">
-					<p class="h1 text-center">Contactez nous !</p>
+					<p class="h1 lg text-center">Contactez nous !</p>
 					<hr />
 				</div>
-				<div class="col-12 col-md-6 offset-md-3">
+				<div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
 					<form class="p-4">
 						<div class="form-group">
 							<label for="text">Votre email de contact</label> 
