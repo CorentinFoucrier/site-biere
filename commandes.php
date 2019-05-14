@@ -2,7 +2,7 @@
 	require_once 'includes/function.php';
 	require_once 'db.php';
 
-	if (isConnect(false)) { //si n'est pas connecter retour index
+	if (!isConnect()) { //si n'est pas connecter retour index
 		header('Location: index.php');
 	}
 	/* Connexion bdd et SELECT tout la table biere */

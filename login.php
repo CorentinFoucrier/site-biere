@@ -1,7 +1,7 @@
 <?php
 	require_once 'includes/function.php';
 	require_once 'db.php';
-	if (isConnect(true)) { //Si connecter goto index
+	if (isConnect()) { //Si connecter goto index
 		header('Location: index.php');
 	}
 	#################################

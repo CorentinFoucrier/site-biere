@@ -17,22 +17,22 @@
 				<li class="nav-item">
 					<a class="nav-link" href="boutique.php"><i class="fas fa-store"></i> Boutique</a>
 				</li>
-				<?php if (isConnect(true)) : ?>
+				<?php if (isConnect()) : ?>
 				<li class="nav-item">
 					<a class="nav-link" href="#"><i class="fas fa-receipt"></i> Bon de commande</a>
 				</li>
 				<?php endif ?>
 			</ul>
 			<ul class="navbar-nav ml-auto">
-				<li class="<?php echo (isConnect(true)) ? 'd-none' : '' ?> nav-item">
+				<li class="<?php echo (isConnect()) ? 'd-none' : '' ?> nav-item">
 					<a class="nav-link" href="login.php"><i class="fas fa-user"></i> Connexion/ Inscription</a>
 				</li>
-				<?php if (isConnect(true)) : ?>
+				<?php if (isConnect()) : ?>
 				<li class="nav-item">
 					<a class="nav-link" href="mon_compte.php"><i class="fas fa-id-card"></i> Profil</a></a>
 				</li>
 				<?php endif ?>
-				<?php if (isConnect(true)) : ?>
+				<?php if (isConnect()) : ?>
 				<li class="nav-item">
 					<a class="nav-link" href="deconnexion.php"><i class="fas fa-power-off"></i> Deconnexion</a></a>
 				</li>

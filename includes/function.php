@@ -1,11 +1,14 @@
 <?php
-function isConnect($verify=false){
+function isConnect(){
 	if (session_status() != PHP_SESSION_ACTIVE){
 		session_start();
 	}
 	
-	if(empty($_SESSION["id"]) && ($verify === true)){
+	if(empty($_SESSION["id"])){
 		return false;
 	}
-	return true;
+
+	if(!empty($_SESSION["id"])){
+		return true;
+	}
 }
