@@ -75,8 +75,8 @@
 					</form>
 				</div>
 			</section>
+		<?php require 'includes/footer.php'; ?>
 		</div>
-	<?php require 'includes/footer.php'; ?>
 	<?php require 'includes/scripts.php'; ?>
 	</body>
 </html>

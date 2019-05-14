@@ -68,9 +68,8 @@
 				</div>
 				<?php endforeach; ?>
 			</section>
-			
-		</div>
 		<?php require 'includes/footer.php'; ?>
+		</div>
 		<?php require 'includes/scripts.php'; ?>
 	</body>
 </html>

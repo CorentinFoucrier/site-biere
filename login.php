@@ -13,7 +13,7 @@
 		$user = $state->fetch();
 		if ($user) {
 			/* si token est validé alors on passe en get pour afficher l'alert */
-			if ($_GET['t'] == $user['token'] && $user['tokenCreatedAt'] < ($user['tokenCreatedAt']+300)) {
+			if ($_GET['t'] == $user['token'] && time() < ($user['tokenCreatedAt']+300)) {
 				require_once 'db.php';
 				$sql = "UPDATE `users` SET `tokenVerify` = 'true' WHERE `users`.`id` = :id";
 				$statement = $pdo->prepare($sql);
@@ -201,18 +201,29 @@
 			$token = generateRandomString();
 			$tokenCreatedAt = time();
 
-			$sql = "INSERT INTO `users` (`token`, `tokenCreatedAt`) VALUES (:token, :tokenCreatedAt";
+			$sql = "UPDATE `users` SET `token`= :token, `tokenCreatedAt`= :tokenCreatedAt WHERE `email` = :email";
 			$statement = $pdo->prepare($sql);
 			$result = $statement->execute([
 				':token' => $token,
-				':tokenCreatedAt' => $tokenCreatedAt
+				':tokenCreatedAt' => $tokenCreatedAt,
+				':email' => $email
 			]);
-			if ($user) {
-				sendMail('foucrier.corentin@gmail.com', [$email], 'Confirmation bread beer shop !', '<html><body>Pour activer votre compte cliquez <a href="http://github.local/site-biere/login.php?t='.$token.'&id='.$user['id'].'">ici</a> !</body></html>', 'Lien d\'activation => http://github.local/site-biere/login.php?t='.$token.'&id='.$user['id'].'');
-				if (session_status() != PHP_SESSION_ACTIVE){
-					session_start();
+			if ($result) {
+				$reqUser = 'SELECT * FROM users WHERE email = ?';
+				$state = $pdo->prepare($reqUser);
+				$state->execute([$email]);
+				$user = $state->fetch();
+				if ($user) {
+					sendMail('foucrier.corentin@gmail.com', [$email], 'Confirmation bread beer shop !', '<html><body>Pour activer votre compte cliquez <a href="http://github.local/site-biere/login.php?t='.$token.'&id='.$user['id'].'">ici</a> !</body></html>', 'Lien d\'activation => http://github.local/site-biere/login.php?t='.$token.'&id='.$user['id'].'');
+					if (session_status() != PHP_SESSION_ACTIVE){
+						session_start();
+					}
+					$_SESSION['resendEmail'] = 'true';
+				}else{
+					die('Erreur lecture sql');
 				}
-				$_SESSION['resendEmail'] = 'true';
+			}else{
+				die('Erreur sql');
 			}
 		}
 	}
@@ -249,7 +260,7 @@
 
 			<?php if (isset($_SESSION['resendEmail']) && ($_SESSION['resendEmail'] == 'true')) : ?>
 			<div class="alert alert-success mt-3" role="alert">
-				Nouvelle email envoyer cliquez <a href="login.php" class="alert-link">ici</a> pour vous connecter !
+				Nouvelle email envoyer ! Veuillez verifier vos email !
 			</div>
 			<?php session_unset($_SESSION['resendEmail']); ?>
 			<?php endif ?>
@@ -291,7 +302,8 @@
 										</div> 
 										<input id="text" name="password" placeholder="********" type="password" class="form-control" aria-describedby="textHelpBlock" required="required">
 									</div> 
-									<u class="form-text"><a href="?pwd=pass_lost">Mot de passe perdu ?</a></u>
+									<span class="form-text"><a class="text-muted" href="?pwd=pass_lost">Mot de passe perdu ?</a>
+									<span class="float-md-right float-left"><a class="text-muted" href="?resendEmail">Renvoyer email de confirmation</a></span></span>
 								</div>
 
 								<div class="form-group">
@@ -436,7 +448,7 @@
 							<h1>Renvoyer l'email de confirmation</h1>
 						</div>
 						<div>
-							<form class="p-4" name="resendEmail">
+							<form class="p-4" name="resendEmail" method="post" action="">
 								<div class="form-group">
 									<label for="email">Votre Email</label> 
 									<div class="input-group">
