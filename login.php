@@ -22,6 +22,8 @@
 					session_start();
 				}
 				$_SESSION['tvalid'] = 'true';
+				header('Location: login.php');
+				exit;
 			} else {
 				/* sinon alert pas valide */
 				if (session_status() != PHP_SESSION_ACTIVE){
