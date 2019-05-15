@@ -1,7 +1,10 @@
 <?php
-	session_start();
-	require 'isNotLogged.php';
-	require 'db.php';
+	require_once 'includes/function.php';
+	require_once 'db.php';
+
+	if (!isConnect()) { //si n'est pas connecter retour index
+		header('Location: index.php');
+	}
 	/* Recupération de la superglobal _POST plus verif que les champs ne sont pas vides */
 	if (!empty($_POST['nom'] && $_POST['prenom'] && $_POST['tel'] &&  $_POST['email'] && $_POST['adresse'] && $_POST['ville'] && $_POST['pays'] && $_POST['codePostal'])) {
 		/* Assignation des _POST à des variable classique + application du htmlentities (anti injection) */
@@ -142,9 +145,9 @@
 						</tbody>
 					</table>
 				</div><!-- fin border -->
-			<?php include('footer.php'); ?>
+			<?php require 'includes/footer.php'; ?>
 		</div>
 		<script type="text/javascript" src="assets/js/table_ttc.js"></script>
-		<?php include('scripts.php'); ?>
+		<?php require 'includes/scripts.php'; ?>
 	</body>
 </html>

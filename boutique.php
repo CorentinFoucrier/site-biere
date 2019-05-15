@@ -31,15 +31,15 @@
 <html lang="fr">
 	<head>
 		<title id="titre">Nos autre produits</title>
-		<?php include('head.php'); ?>
+		<?php require 'includes/head.php'; ?>
 	</head>
 	<body>
+		<?php require 'includes/header.php'; ?>
 		<div id="oppacity-bg" class="container">
-			<?php include('header.php'); ?>
 			<section class="row">
 				<!-- Boucle sur $bieres[] qui est un tableau sortie de SQL -->
 				<?php foreach ($bieres as $biere) : //foreach $key as $value ?>
-				<div class="col-md-4 offset-md-1 mb-5">
+				<div class="col-md-4 my-4">
 					<div class="row box">
 						<!-- HEADER -->
 						<div class="col-12">
@@ -68,8 +68,8 @@
 				</div>
 				<?php endforeach; ?>
 			</section>
-			<?php include('footer.php'); ?>
+		<?php require 'includes/footer.php'; ?>
 		</div>
-	<?php include('scripts.php'); ?>
+		<?php require 'includes/scripts.php'; ?>
 	</body>
 </html>

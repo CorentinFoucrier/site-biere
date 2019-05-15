@@ -1,7 +1,10 @@
 <?php
-	session_start();
-	require 'db.php';
-	require 'isNotLogged.php';
+	require_once 'includes/function.php';
+	require_once 'db.php';
+
+	if (!isConnect()) { //si n'est pas connecter retour index
+		header('Location: index.php');
+	}
 	/*
 		Définition des variable pour contrer l'erreur
 		undefined en cas d'utilisation du debugeur "xdebug".
@@ -111,11 +114,11 @@
 <html lang="fr">
 	<head>
 		<title id="titre">Présentation entreprise</title>
-		<?php include('head.php'); ?>
+		<?php require 'includes/head.php'; ?>
 	</head>
 	<body>
 		<div id="oppacity-bg" class="container">
-			<?php include('header.php'); ?>
+			<?php require 'includes/header.php'; ?>
 			<div class="row">
 				<div class="col-lg-6">
 					<form name="form1" method="post" action="" class="p-2">
@@ -237,8 +240,8 @@
 				</div><!-- Fin col -->
 				<?php endif; ?>
 			</div>
-			<?php include('footer.php'); ?>
+			<?php require 'includes/footer.php'; ?>
 		</div>
-	<?php include('scripts.php'); ?>
+	<?php require 'includes/scripts.php'; ?>
 	</body>
 </html>
