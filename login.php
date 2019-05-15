@@ -221,6 +221,8 @@
 						session_start();
 					}
 					$_SESSION['resendEmail'] = 'true';
+					header('Location: login.php');
+					exit();
 				}else{
 					die('Erreur lecture sql');
 				}
