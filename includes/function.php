@@ -18,8 +18,8 @@ function sendMail($setFrom, $setTo, $obj, $msgHTML, $msgPlain, $setBcc=true) {
 	require 'assets/vendor/autoload.php';
 
 	// Create the Transport
-	$transport = (new Swift_SmtpTransport('smtp.gmail.com', 587, 'tls'))
-	  ->setUsername('foucrier.corentin@gmail.com')
+	$transport = (new Swift_SmtpTransport($smtp, $port, $cryptage))
+	  ->setUsername($mailFrom)
 	  ->setPassword($mailpassword)
 	;
 
@@ -50,11 +50,11 @@ function sendMail($setFrom, $setTo, $obj, $msgHTML, $msgPlain, $setBcc=true) {
 }
 
 function generateRandomString($length = 64) {
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $charactersLength = strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
-    }
-    return $randomString;
+	$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	$charactersLength = strlen($characters);
+	$randomString = '';
+	for ($i = 0; $i < $length; $i++) {
+		$randomString .= $characters[rand(0, $charactersLength - 1)];
+	}
+	return $randomString;
 }
