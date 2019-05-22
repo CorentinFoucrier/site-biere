@@ -14,8 +14,8 @@
 				<div class="col-12 col-md-12">
 					<h1 class="text-center">Qui somme nous ?</h1>
 					<hr class="d-none d-lg-block" />
-					<p class="m-2">Entreprise créée par l'association de 2 formateurs, Julien et Kévin. Cette entreprise élabore de façon artisanale de la bière.<br />
-					Elle est située en Allemagne, à Stuttgart. L'entreprise s'est spécialisée dans l'élaboration d'une bière aromatisée au pain.</p>
+					<p class="m-2">Entreprise a été créée de 2 formateurs, Julien et Kévin. Cette entreprise élabore de façon artisanale de la bière.<br />
+					Elle est située en Allemagne, à Stuttgart. L'entreprise s'est spécialisée dans la production de bière aromatisée au pain.</p>
 				</div>
 			</section>
 
